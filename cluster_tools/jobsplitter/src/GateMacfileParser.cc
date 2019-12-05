@@ -97,6 +97,7 @@ G4int GateMacfileParser::GenerateResolvedMacros(G4String directory)
 
 	G4String splitfileName=dir+macNameDir+".split";
 	ofstream splitfile(splitfileName.c_str());
+    splitfile.setf(ios::fixed,ios::floatfield);
 	splitfile<<"Number of files: "<<nSplits<<endl<<endl; 
 
 	outputDir=dir;
@@ -114,6 +115,8 @@ G4int GateMacfileParser::GenerateResolvedMacros(G4String directory)
 	if (filenames[ROOT]==1)
 		splitfile<<"Original Root filename: "<<originalRootFileName<<endl;
 	splitfile.close();
+
+    cout<<endl;
 
 	outputMacDir=dir+macNameDir;
 	return 0; 
@@ -154,6 +157,7 @@ G4int GateMacfileParser::GenerateResolvedMacro(G4String outputName,G4int splitNu
 	ifstream macfile;
 	const G4String dir(outputName); 
 	ofstream outputMacfile(dir.c_str());
+    outputMacfile.setf(ios::fixed,ios::floatfield);
  
 	macfile.open(macName);
 	if (!macfile || !outputMacfile)
