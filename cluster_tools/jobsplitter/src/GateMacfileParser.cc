@@ -102,6 +102,7 @@ G4int GateMacfileParser::GenerateResolvedMacros(G4String directory)
 
 	outputDir=dir;
 
+    int step =(nSplits/10)<1?1:(nSplits/10);
 	for (G4int j=1;j<=nSplits;j++)
 	{
 		i_str.str("");
@@ -109,7 +110,7 @@ G4int GateMacfileParser::GenerateResolvedMacros(G4String directory)
 		GenerateResolvedMacro(dir+macNameDir+i_str.str()+".mac",j,splitfile); 
 		splitfile<<endl;  
 
-		if(j%(nSplits/10)==0)
+		if(j%step==0)
 			cout<<100*j/nSplits<<"% "<<flush;
 	}
 	if (filenames[ROOT]==1)
